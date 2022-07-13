@@ -1,11 +1,24 @@
+const e = require("cors");
 const express = require("express");
 const app = express()
 const fs = require("fs");
 const Joi = require("joi");
-const joi = require('joi');
 app.use(express.json())
 fileDirName = "./data/student-json.JSON"
-const post = async (req, res) => {
+const sendErrorMessage = (err) => {
+  const key = err.details[0].context.key;
+  const value = err.details[0].context.value;
+  const type = err.details[0].type;
+
+  if (!value) return key + " " +"tidak boleh kosong"
+  switch (type) {
+    case "number.base":
+      return key + " " + "harus angka"
+    case "string.base":
+      return key + " " + "harus huruf"
+  }
+}
+const post = async (req, res, next) => {
     const { name, age, gender, department, car, id } = req.body;
     const schema = Joi.object({
       name: Joi.string().required(),
@@ -13,7 +26,7 @@ const post = async (req, res) => {
       gender: Joi.string().required(),
       department: Joi.string().required(),
       car: Joi.string().required(),
-      id: Joi.string().required()
+      id: Joi.number().required()
     })
     try {
       const value = await schema.validateAsync({
@@ -28,7 +41,7 @@ const post = async (req, res) => {
         if (err)  throw err
         let data = JSON.parse(fd)
         let id_exist = data.find((x) => {
-          return x.id === id
+          return x.id == id
         }) 
         if (!id_exist){
           let student = ""
@@ -44,12 +57,12 @@ const post = async (req, res) => {
           })
         }else{
          res.status(403).send({message :"duplicate ID !", ok:false, status: 403})
+        // next({message :"duplicate ID !", ok:false, status: 403})
         }
       })
-    }catch (err) {
-      res.status(403).send({message :err.details[0].message, ok:false, status: 403})
+    }catch(err) {
+      res.status(403).send({message :sendErrorMessage(err), ok:false, status: 403})
     }
-
 }
 
 const deleted = (req, res) => {
@@ -120,15 +133,15 @@ const update = async(req, res)=> {
         }
       })
     }catch (err) {
-      res.status(403).send({message :err.details[0].message, ok:false, status: 403})
+      res.status(403).send({message :sendErrorMessage(err), ok:false, status: 403})
     }
 
 }
 
 const get = (req, res) => {
     fs.readFile(fileDirName, (err, data) => {
-        if (err)  throw err
-        res.send(JSON.parse(data))
+        if (err) throw err
+        res.send(data)
     })
 }
 

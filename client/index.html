@@ -9,6 +9,21 @@
         .input{
             display: flex;
         }
+        table {
+  font-family: arial, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+td, th {
+  border: 1px solid #dddddd;
+  text-align: left;
+  padding: 8px;
+}
+
+tr:nth-child(even) {
+  background-color: #dddddd;
+}
     </style>
     <title>Document</title>
 </head>
@@ -22,7 +37,7 @@
                   <div>
                       <label for="id">
                            id <br/>
-                          <input  id="id"/>
+                          <input id="id"/>
                       </label>
                   </div> 
                   <div>
@@ -62,11 +77,8 @@
         </div>
     </div>
     <!-- <button id="myBtn">get data</button> -->
-    <div id="student">
-        
-    </div>
+    <div id="student"></div>
     <script src="script.js">
     </script>
 </body>
-
 </html>
