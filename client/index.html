@@ -5,80 +5,88 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <style>
-        .input{
-            display: flex;
-        }
-        table {
-  font-family: arial, sans-serif;
-  border-collapse: collapse;
-  width: 100%;
-}
-
-td, th {
-  border: 1px solid #dddddd;
-  text-align: left;
-  padding: 8px;
-}
-
-tr:nth-child(even) {
-  background-color: #dddddd;
-}
-    </style>
+    <link rel="stylesheet" href="style.css">
     <title>Document</title>
 </head>
 
 <body>
     <div id="myId">
-
-      <div class="form">
-          <form id="form">
-              <div class="input">
-                  <div>
-                      <label for="id">
-                           id <br/>
-                          <input id="id"/>
-                      </label>
-                  </div> 
-                  <div>
-                      <label for="name">
-                          name <br/>
-                          <input id="name"/>
-                      </label>
-                  </div>
-                  <div>
-                      <label for="age">
-                          age <br/>
-                          <input id="age"/>
-                      </label>
-                  </div>
-                  <div>
-                      <label for="gender">
-                          gender <br/>
-                          <input id="gender"/>
-                      </label>
-                  </div>
-                  <div>
-                      <label for="department">
-                          department <br/>
-                          <input id="department"/>
-                      </label>
-                  </div>
-                  <div>
-                      <label for="car">
-                          car <br/>
-                          <input id="car"/>
-                      </label>
-                  </div>
-              </div>
-              <button type="submit">Post</button>
+        <div id="formParent" class="form">
+            <div id="close"></div>
+            <form id="form">
+                <div>
+                    <label for="id">
+                        ID <br />
+                        <div class="input">
+                            <input id="id" />
+                        </div>
+                    </label>
+                </div>
+                <div>
+                    <label for="name">
+                        NAME <br />
+                        <div class="input">
+                            <input id="name" />
+                        </div>
+                    </label>
+                </div>
+                <div>
+                    <label for="age">
+                        AGE <br />
+                        <div class="input">
+                            <input id="age" />
+                        </div>
+                    </label>
+                </div>
+                <div>
+                    <label for="gender">
+                        GENDER <br />
+                        <div class="input">
+                            <input id="gender" />
+                        </div>
+                    </label>
+                </div>
+                <div>
+                    <label for="department">
+                        DEPARTMENT <br />
+                        <div class="input">
+                            <input id="department" />
+                        </div>
+                    </label>
+                </div>
+                <div>
+                    <label for="car">
+                        CAR <br />
+                        <div class="input">
+                            <input id="car" />
+                        </div>
+                    </label>
+                </div>
+              <button type="submit">Add</button>
           </form>
-          <div id="message"></div>
         </div>
+        <div class="buttons">
+            <span onclick="close" class="showBtn" id="closeBtn"><img src="./assets/image/arrow-up-sign-to-navigate.png" width="20"></span>
+            <span onclick="open" class="hideBtn" id="openBtn"><img src="./assets/image/arrow-down-sign-to-navigate.png" width="20"></span>
+        </div>
+        <div id="message"></div>
     </div>
     <!-- <button id="myBtn">get data</button> -->
     <div id="student"></div>
-    <script src="script.js">
+    <div class="parentTable">
+
+        <table id="table">
+            <tr>
+                <th>Id</th>
+                <th>Name</th>
+                <th>Age</th>
+                <th>Gender</th>
+                <th>Department</th>
+                <th>Car</th>
+            </tr>
+        </table>
+        </div>
+        <script src="script.js">
     </script>
 </body>
 </html>

@@ -2,6 +2,30 @@ let parent = document.getElementById("myId");
 let button = document.getElementById("myBtn");
 let student = document.getElementById("student");
 let form = document.getElementById("form");
+let closeBtn = document.getElementById("closeBtn");
+let closeId = document.getElementById("close")
+let formParent = document.getElementById("formParent");
+let openBtn = document.getElementById("openBtn");
+
+closeBtn.onclick = () => {
+    if (!closeId.className){
+      closeId.className = "close"
+    }else{
+      closeId.classList.replace("open", "close")
+    }
+    closeBtn.classList.replace("showBtn", "hideBtn")
+    openBtn.classList.replace("hideBtn", "showBtn")
+    setTimeout(() => {
+      formParent.style.display = "none"
+    }, 400)
+}
+
+openBtn.onclick = () => {
+  formParent.style.display = "block";
+    closeId.classList.replace("close", "open");
+    closeBtn.classList.replace("hideBtn", "showBtn")
+    openBtn.classList.replace("showBtn", "hideBtn")
+}
 
 const postData = (url, data) => {
     return new Promise(async (resolve, reject) => {
@@ -46,39 +70,42 @@ const test = () => {
     message.innerHTML = a
 }
 
-const table = () => {
-  let student = document.getElementById("student");
-  const table = document.createElement("table");
-  const tr = document.createElement("tr");
-  const th = document.createElement("th");
-  table.appendChild(tr)
+const table = (data) => {
+  data.forEach((x) => {
+    const tStudent = document.getElementById("table");
+    let tr = document.createElement("tr");
+    let tdId = document.createElement("td");
+    let tdName = document.createElement("td");
+    let tdAge = document.createElement("td");
+    let tdGender = document.createElement("td");
+    let tdDepartment = document.createElement("td");
+    let tdCar = document.createElement("td");
+    let id = document.createTextNode(x.id);
+    let name = document.createTextNode(x.name);
+    let age = document.createTextNode(x.age);
+    let gender = document.createTextNode(x.gender);
+    let department = document.createTextNode(x.department);
+    let car = document.createTextNode(x.car);
+    tdId.appendChild(id);
+    tdName.appendChild(name);
+    tdAge.appendChild(age);
+    tdGender.appendChild(gender);
+    tdDepartment.appendChild(department);
+    tdCar.appendChild(car);
+    tr.appendChild(tdId);
+    tr.appendChild(tdName);
+    tr.appendChild(tdAge);
+    tr.appendChild(tdGender);
+    tr.appendChild(tdDepartment);
+    tr.appendChild(tdCar);
+    tStudent.appendChild(tr);
+  });
 }
 
 fetchData()
 .then((data) => {
-    test()
-    student.innerHTML = `<table>
-      <tr>
-        <th>Id</th>
-        <th>Name</th>
-        <th>Age</th>
-        <th>Gender</th>
-        <th>Department</th>
-        <th>Car</th>
-      </tr>
-      ${data.map((x) => {
-        return (`
-        <tr>
-          <td>${x.id}</td>
-          <td>${x.name}</td>
-          <td>${x.age}</td>
-          <td>${x.gender}</td>
-          <td>${x.department}</td>
-          <td>${x.car}</td>
-        </tr>
-        `)
-      })}
-    </table>`;
+   test()
+   table(data)
 })
 .catch((err) => {
     console.log(err);
