@@ -6,7 +6,7 @@
 }
 
 body {
-    background-color: #D3D8E4;
+    background-color: #F4F4F4;
     font-family: 'dosis';
 }
 
@@ -51,7 +51,7 @@ input:focus{
     top: 650px;
     animation: test 0.3s  0s forwards linear;
     position: absolute;
-    background-color: #D3D8E4;
+    background-color: #F4F4F4;
     border-top: 2px solid black;
     /* background-color: #f8f8f8; */
 }
@@ -62,7 +62,7 @@ input:focus{
     top: 0px;
     animation: test2 0.3s  0s forwards linear;
     position: absolute;
-    background-color: #D3D8E4;
+    background-color: #F4F4F4;
     border-top: 2px solid black;
 }
 
@@ -125,6 +125,22 @@ form div {
 form div:nth-last-of-type(1) {
     margin-bottom: 1.5em;
 }
+
+.parent {
+    animation: go_up 1s 0.45s forwards linear;
+    position: relative;
+    bottom:0;
+}
+
+/* .parent2 {
+
+} */
+
+@keyframes go_up {
+    0% { bottom: 0; }
+    70% {bottom: 1000px;}
+    100% { bottom: 0; }
+}
 .parentTable {
     width: 75%;
     margin: 0 auto 1em auto;
@@ -144,8 +160,16 @@ padding: 12px 0 12px 6px;
 }
 
 tr {
-background-color: #c7c7c7;
-color: #313030;
+background-color: #5d9cec;
+color: #F4F4F4;
 font-size: 0.90rem;
 font-family: 'Roboto Condensed';
+}
+
+@media only screen and (min-width: 1900px) {
+    @keyframes go_up {
+        0% { bottom: 0; }
+        70% {bottom: 1200px;}
+        100% { bottom: 0; }
+    }
 }

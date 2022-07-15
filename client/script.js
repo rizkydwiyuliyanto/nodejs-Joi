@@ -6,6 +6,7 @@ let closeBtn = document.getElementById("closeBtn");
 let closeId = document.getElementById("close")
 let formParent = document.getElementById("formParent");
 let openBtn = document.getElementById("openBtn");
+let container = document.getElementById("container");
 
 closeBtn.onclick = () => {
     if (!closeId.className){
@@ -13,15 +14,17 @@ closeBtn.onclick = () => {
     }else{
       closeId.classList.replace("open", "close")
     }
-    closeBtn.classList.replace("showBtn", "hideBtn")
-    openBtn.classList.replace("hideBtn", "showBtn")
+    container.className = "parent"
     setTimeout(() => {
+      closeBtn.classList.replace("showBtn", "hideBtn");
+      openBtn.classList.replace("hideBtn", "showBtn");
       formParent.style.display = "none"
-    }, 400)
+    }, 1150)
 }
 
 openBtn.onclick = () => {
   formParent.style.display = "block";
+  container.className = ""
     closeId.classList.replace("close", "open");
     closeBtn.classList.replace("hideBtn", "showBtn")
     openBtn.classList.replace("showBtn", "hideBtn")
@@ -64,6 +67,7 @@ const fetchData = () => {
         }
     })
 }
+
 const test = () => {
     let message = document.getElementById("message");
     let a = sessionStorage.getItem("message");
